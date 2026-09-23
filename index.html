@@ -738,7 +738,8 @@
                 color: #fff;
                 box-shadow: 0 -8px 24px rgba(18, 31, 40, 0.25);
                 transform: translateY(110%);
-                transition: transform 0.28s ease;
+                transition: transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+                will-change: transform;
             }
 
             .sticky-bar.visible {
@@ -988,18 +989,33 @@
             loadEmbeddedTemplate();
         });
 
-        // Total-Leiste: erscheint beim Runterscrollen, verschwindet beim Hochscrollen
+        // Total-Leiste: erscheint beim Runterscrollen, verschwindet beim Hochscrollen,
+        // bleibt am Seitenende sichtbar. rAF-Drosselung, Hysterese und Gummiband-Schutz (iOS).
         (function() {
-            let lastY = window.scrollY;
             const bar = document.querySelector('.sticky-bar');
-            window.addEventListener('scroll', function() {
-                const y = window.scrollY;
-                if (y < 80 || y < lastY - 4) {
+            let lastY = window.scrollY;
+            let ticking = false;
+            function update() {
+                ticking = false;
+                const maxY = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+                const y = Math.min(Math.max(window.scrollY, 0), maxY);
+                const nearBottom = maxY - y < 160;
+                if (y < 80) {
                     bar.classList.remove('visible');
-                } else if (y > lastY + 4) {
+                } else if (nearBottom) {
                     bar.classList.add('visible');
+                } else if (y > lastY + 12) {
+                    bar.classList.add('visible');
+                } else if (y < lastY - 12) {
+                    bar.classList.remove('visible');
                 }
                 lastY = y;
+            }
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    ticking = true;
+                    window.requestAnimationFrame(update);
+                }
             }, { passive: true });
         })();
 
