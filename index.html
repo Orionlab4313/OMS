@@ -3,24 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#1a1a1a">
+    <meta name="theme-color" content="#121f28">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap" rel="stylesheet">
     <title>Spesenantrag - Frenus AG</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
     <style>
         :root {
-            --ink: #1a1a1a;
-            --muted: #6b6b6b;
-            --line: #e5e5e5;
-            --line-strong: #ddd;
-            --paper: #f7f5f2;
+            --navy: #121f28;
+            --navy-2: #243746;
+            --slate: #314351;
+            --muted: #556575;
+            --blue: #00a3e0;
+            --blue-dark: #008bc0;
+            --blue-tint: #e6f6fc;
+            --orange: #e07b00;
+            --bg: #f1f3f5;
+            --line: #e1e5e9;
+            --line-strong: #d5dbe1;
             --card: #ffffff;
-            --accent: #c8553d;
-            --accent-hover: #b44a35;
-            --ok: #166534;
-            --danger: #b91c1c;
+            --radius: 8px;
+            --pill: 999px;
         }
 
         * {
@@ -33,83 +37,118 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-            background: var(--paper);
+            font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: var(--bg);
             min-height: 100vh;
             margin: 0;
-            padding: 48px 24px;
-            color: var(--ink);
+            padding: 0 0 48px;
+            color: var(--slate);
             font-size: 15px;
             line-height: 1.5;
         }
 
         ::selection {
-            background: var(--ink);
+            background: var(--blue);
             color: #fff;
+        }
+
+        /* Kopfleiste mit Logo, wie auf oms-pruefservice.ch */
+        .topbar {
+            background: #fff;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .topbar-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 14px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .logo {
+            height: 52px;
+            width: auto;
+            display: block;
+        }
+
+        .topbar-tag {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--muted);
+        }
+
+        /* Dunkle Hero-Fläche */
+        .hero {
+            background: var(--navy);
+            color: #fff;
+            padding: 48px 32px 88px;
+        }
+
+        .hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--blue);
+        }
+
+        h1 {
+            margin: 0 0 10px;
+            font-size: 42px;
+            font-weight: 400;
+            line-height: 1.1;
+            color: #fff;
+        }
+
+        .subtitle {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.75);
         }
 
         .container {
             max-width: 1100px;
-            margin: 0 auto;
+            margin: -48px auto 0;
             background: var(--card);
-            border: 1px solid var(--line);
-            padding: 56px 56px 48px;
-        }
-
-        .eyebrow {
-            margin: 0 0 14px;
-            font-size: 12px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--muted);
-        }
-
-        h1 {
-            margin: 0 0 12px;
-            font-size: 44px;
-            font-weight: 300;
-            letter-spacing: -0.02em;
-            line-height: 1.05;
-            color: var(--ink);
-        }
-
-        .subtitle {
-            margin: 0 0 36px;
-            font-size: 16px;
-            font-weight: 300;
-            color: var(--muted);
+            border-radius: 12px;
+            padding: 36px 40px 40px;
+            box-shadow: 0 10px 30px rgba(18, 31, 40, 0.10);
         }
 
         .info-box {
-            padding: 16px 20px;
-            margin-bottom: 28px;
-            border: 1px solid var(--line);
-            border-left: 2px solid var(--ink);
-            background: var(--paper);
+            padding: 14px 18px;
+            margin-bottom: 24px;
+            border-radius: var(--radius);
+            border-left: 3px solid var(--blue);
+            background: var(--blue-tint);
             font-size: 14px;
-            color: var(--ink);
+            color: var(--slate);
         }
 
         .form-section {
-            padding: 32px 0 8px;
-            margin-bottom: 8px;
-            border-top: 1px solid var(--line-strong);
+            padding: 28px 0 8px;
+            border-top: 1px solid var(--line);
         }
 
         .form-section h2 {
-            margin: 0 0 24px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--ink);
+            margin: 0 0 20px;
+            font-size: 19px;
+            font-weight: 500;
+            color: var(--navy-2);
         }
 
         .form-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px 24px;
+            gap: 18px 24px;
         }
 
         .form-group {
@@ -119,27 +158,27 @@
 
         .form-group label {
             font-size: 13px;
-            font-weight: 600;
-            color: var(--ink);
-            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--muted);
+            margin-bottom: 6px;
         }
 
         .form-group input,
         .form-group select {
-            padding: 12px 14px;
-            border: 1px solid var(--line);
-            border-radius: 0;
+            padding: 11px 14px;
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius);
             background: #fff;
-            color: var(--ink);
+            color: var(--slate);
             font-family: inherit;
             font-size: 15px;
-            transition: border-color 0.2s;
+            transition: border-color 0.2s, box-shadow 0.2s;
             -webkit-appearance: none;
             appearance: none;
         }
 
         .form-group select {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231a1a1a' stroke-width='1.5'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23314351' stroke-width='1.6'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 14px center;
             padding-right: 36px;
@@ -147,7 +186,7 @@
 
         .form-group input::placeholder,
         td input::placeholder {
-            color: #999;
+            color: #9aa5b1;
         }
 
         .form-group input:focus,
@@ -155,7 +194,8 @@
         td input[type="text"]:focus,
         .tag-select:focus {
             outline: none;
-            border-color: var(--ink);
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(0, 163, 224, 0.15);
         }
 
         .table-container {
@@ -164,23 +204,39 @@
 
         table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
             font-size: 14px;
         }
 
         th {
-            padding: 0 6px 12px;
+            background: var(--navy-2);
+            color: #fff;
+            padding: 12px 8px;
             text-align: center;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--muted);
-            border-bottom: 1px solid var(--ink);
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 1.25;
             white-space: nowrap;
         }
 
-        th:first-child,
+        th small {
+            display: block;
+            font-size: 11px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.65);
+        }
+
+        th:first-child {
+            border-radius: var(--radius) 0 0 var(--radius);
+            text-align: left;
+            padding-left: 12px;
+        }
+
+        th:last-child {
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+
         th.kst-head {
             text-align: left;
         }
@@ -191,22 +247,22 @@
             text-align: center;
         }
 
-        tbody tr.dup {
-            background: #fdf3f0;
+        tbody tr.dup td {
+            background: #fff6e9;
         }
 
         tbody tr.dup .tag-select {
-            border-color: var(--accent);
-            color: var(--accent);
+            border-color: var(--orange);
+            color: var(--orange);
         }
 
         td input[type="text"] {
             width: 100%;
             padding: 9px 12px;
-            border: 1px solid var(--line);
-            border-radius: 0;
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius);
             background: #fff;
-            color: var(--ink);
+            color: var(--slate);
             font-family: inherit;
             font-size: 14px;
             -webkit-appearance: none;
@@ -214,18 +270,18 @@
         }
 
         .tag-select {
-            width: 64px;
+            width: 66px;
             padding: 9px 8px;
-            border: 1px solid var(--line);
-            border-radius: 0;
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius);
             background: #fff;
-            color: var(--ink);
+            color: var(--navy-2);
             font-family: inherit;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 500;
             -webkit-appearance: none;
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%236b6b6b' stroke-width='1.5'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23556575' stroke-width='1.5'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 8px center;
         }
@@ -246,7 +302,7 @@
             height: 18px;
             margin: 0;
             cursor: pointer;
-            accent-color: var(--ink);
+            accent-color: var(--blue);
         }
 
         .cb span {
@@ -254,8 +310,9 @@
         }
 
         .tag-col {
-            width: 70px;
+            width: 72px;
             text-align: left;
+            padding-left: 12px;
         }
 
         .kst-col {
@@ -264,7 +321,8 @@
         }
 
         .spesen-col {
-            font-weight: 600;
+            font-weight: 500;
+            color: var(--navy-2);
             font-variant-numeric: tabular-nums;
             min-width: 80px;
             white-space: nowrap;
@@ -272,110 +330,105 @@
         }
 
         .total-row td {
-            padding: 20px 8px 8px;
+            padding: 18px 8px 8px;
             border-bottom: none;
-            border-top: 1px solid var(--ink);
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
+            font-size: 14px;
+            font-weight: 500;
             color: var(--muted);
         }
 
         .total-amount {
-            color: var(--ink) !important;
+            color: var(--navy-2) !important;
             font-size: 22px !important;
             font-weight: 500;
-            letter-spacing: 0 !important;
-            text-transform: none !important;
             font-variant-numeric: tabular-nums;
             white-space: nowrap;
             text-align: right;
         }
 
         .delete-btn {
-            background: none;
+            background: #f1f3f5;
             color: var(--muted);
-            border: 1px solid var(--line);
+            border: none;
             width: 32px;
             height: 32px;
+            border-radius: var(--pill);
             cursor: pointer;
             font-family: inherit;
             font-size: 13px;
             font-weight: 500;
-            transition: color 0.2s, border-color 0.2s;
+            transition: background 0.2s, color 0.2s;
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
         }
 
         .delete-btn:hover {
-            color: var(--accent);
-            border-color: var(--accent);
+            background: #fff6e9;
+            color: var(--orange);
         }
 
         .btn-container {
             display: flex;
             gap: 12px;
             justify-content: flex-end;
-            margin-top: 32px;
-            padding-top: 32px;
-            border-top: 1px solid var(--line-strong);
+            margin-top: 28px;
+            padding-top: 28px;
+            border-top: 1px solid var(--line);
             flex-wrap: wrap;
         }
 
         .btn {
-            padding: 15px 28px;
-            border: 1px solid var(--ink);
-            border-radius: 0;
+            padding: 13px 26px;
+            border: none;
+            border-radius: var(--pill);
             font-family: inherit;
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
+            font-size: 15px;
+            font-weight: 500;
             cursor: pointer;
-            transition: background 0.2s, color 0.2s, border-color 0.2s;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
         }
 
         .btn-primary {
-            background: var(--ink);
+            background: var(--blue);
             color: #fff;
         }
 
         .btn-primary:hover {
-            background: var(--accent);
-            border-color: var(--accent);
+            background: var(--blue-dark);
+            box-shadow: 0 6px 18px rgba(0, 163, 224, 0.35);
         }
 
         .btn-primary:disabled {
             background: var(--line);
-            border-color: var(--line);
-            color: #999;
+            color: #9aa5b1;
             cursor: not-allowed;
+            box-shadow: none;
         }
 
         .btn-secondary {
-            background: transparent;
-            color: var(--ink);
-            border-color: var(--line-strong);
+            background: #f1f3f5;
+            color: var(--slate);
         }
 
         .btn-secondary:hover {
-            border-color: var(--ink);
+            background: var(--line);
         }
 
         .btn-secondary.armed {
-            border-color: var(--accent);
-            color: var(--accent);
+            background: #fff6e9;
+            color: var(--orange);
         }
 
         .legend {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 12px 24px;
-            margin-top: 28px;
-            padding: 24px 0 0;
-            border-top: 1px solid var(--line);
+            gap: 10px 24px;
+            margin-top: 24px;
+            padding: 18px 20px;
+            background: #f9fafa;
+            border-radius: var(--radius);
             font-size: 13px;
             color: var(--muted);
         }
@@ -387,23 +440,23 @@
         }
 
         .legend-item strong {
-            color: var(--ink);
-            font-weight: 600;
+            color: var(--slate);
+            font-weight: 500;
         }
 
         .legend-dot {
-            width: 6px;
-            height: 6px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            background: var(--ink);
-            flex: 0 0 6px;
+            background: var(--blue);
+            flex: 0 0 8px;
         }
 
         .legend-note {
             grid-column: 1 / -1;
             font-size: 13px;
             color: var(--muted);
-            padding-top: 12px;
+            padding-top: 10px;
             border-top: 1px solid var(--line);
         }
 
@@ -414,32 +467,31 @@
         }
 
         .template-status.success {
-            color: var(--ok);
+            color: var(--blue-dark);
         }
 
         .add-row-btn {
             background: none;
             border: 1px dashed var(--line-strong);
-            border-radius: 0;
+            border-radius: var(--radius);
             color: var(--muted);
-            padding: 14px;
+            padding: 13px;
             width: 100%;
             cursor: pointer;
-            margin-top: 16px;
+            margin-top: 14px;
             font-family: inherit;
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            transition: color 0.2s, border-color 0.2s;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s, border-color 0.2s, background 0.2s;
             -webkit-tap-highlight-color: transparent;
             -webkit-appearance: none;
             touch-action: manipulation;
         }
 
         .add-row-btn:hover {
-            border-color: var(--ink);
-            color: var(--ink);
+            border-color: var(--blue);
+            color: var(--blue-dark);
+            background: var(--blue-tint);
         }
 
         /* Hinweis statt Browser-Alert */
@@ -448,12 +500,13 @@
             left: 50%;
             bottom: 28px;
             transform: translateX(-50%) translateY(16px);
-            background: var(--ink);
+            background: var(--navy-2);
             color: #fff;
-            padding: 14px 20px;
+            padding: 13px 20px;
+            border-radius: var(--pill);
             font-size: 14px;
             max-width: min(92vw, 520px);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+            box-shadow: 0 12px 32px rgba(18, 31, 40, 0.25);
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.2s, transform 0.2s;
@@ -466,7 +519,7 @@
         }
 
         .toast.error {
-            background: var(--accent);
+            background: var(--orange);
         }
 
         /* Feste Total-Leiste, nur auf dem Handy */
@@ -474,28 +527,50 @@
             display: none;
         }
 
+        /* Kleine Laptops: weniger Innenabstand, damit die Tabelle ohne Scrollbalken passt */
+        @media (max-width: 1100px) {
+            .container {
+                padding: 28px 24px 32px;
+            }
+            td {
+                padding: 10px 6px;
+            }
+        }
+
         /* Handy-Ansicht: Tabelle wird zu Karten pro Tag */
         @media (max-width: 900px) {
             body {
-                padding: 0;
                 padding-bottom: calc(96px + env(safe-area-inset-bottom));
             }
 
-            .container {
-                border: none;
-                padding: 32px 20px 24px;
+            .topbar-inner {
+                padding: 12px 20px;
+            }
+
+            .logo {
+                height: 40px;
+            }
+
+            .topbar-tag {
+                display: none;
+            }
+
+            .hero {
+                padding: 32px 20px 64px;
             }
 
             h1 {
-                font-size: 34px;
+                font-size: 32px;
             }
 
-            .subtitle {
-                margin-bottom: 24px;
+            .container {
+                margin: -36px 12px 0;
+                padding: 24px 16px 28px;
+                border-radius: 12px;
             }
 
             .form-section {
-                padding-top: 24px;
+                padding-top: 22px;
             }
 
             /* 16px verhindert das automatische Zoomen von iOS beim Tippen */
@@ -523,15 +598,19 @@
                 flex-wrap: wrap;
                 align-items: center;
                 gap: 8px;
-                padding: 16px;
+                padding: 14px;
                 margin-bottom: 12px;
                 background: #fff;
                 border: 1px solid var(--line);
+                border-radius: 12px;
             }
 
             #spesenTable tbody tr.dup {
-                background: #fdf3f0;
-                border-color: var(--accent);
+                border-color: var(--orange);
+            }
+
+            #spesenTable tbody tr.dup td {
+                background: transparent;
             }
 
             #spesenTable td {
@@ -545,6 +624,7 @@
                 order: 1;
                 width: auto;
                 flex: 0 0 auto;
+                padding-left: 0;
             }
 
             .tag-select {
@@ -579,10 +659,11 @@
             }
 
             .cb {
-                padding: 10px 14px;
-                border: 1px solid var(--line);
+                padding: 9px 14px;
+                border: 1px solid var(--line-strong);
+                border-radius: var(--pill);
                 background: #fff;
-                color: var(--ink);
+                color: var(--slate);
                 font-size: 14px;
                 min-height: 42px;
             }
@@ -592,8 +673,8 @@
             }
 
             .cb:has(input:checked) {
-                background: var(--ink);
-                border-color: var(--ink);
+                background: var(--blue);
+                border-color: var(--blue);
                 color: #fff;
             }
 
@@ -610,15 +691,13 @@
                 margin-top: 8px;
                 padding-top: 12px !important;
                 border-top: 1px solid var(--line) !important;
-                font-size: 17px;
+                font-size: 18px;
             }
 
             .spesen-col::before {
                 content: 'Spesen';
-                font-size: 11px;
-                font-weight: 600;
-                text-transform: uppercase;
-                letter-spacing: 0.12em;
+                font-size: 13px;
+                font-weight: 500;
                 color: var(--muted);
             }
 
@@ -626,18 +705,17 @@
                 content: ' CHF';
                 font-size: 12px;
                 color: var(--muted);
-                font-weight: 500;
+                font-weight: 400;
             }
 
             #spesenTable tfoot tr {
                 display: flex;
                 justify-content: space-between;
                 align-items: baseline;
-                padding: 8px 0 0;
+                padding: 6px 4px 0;
             }
 
             .total-row td {
-                border-top: none;
                 padding: 8px 0;
             }
 
@@ -661,7 +739,7 @@
 
             .btn {
                 width: 100%;
-                padding: 16px;
+                padding: 15px;
             }
 
             .sticky-bar {
@@ -674,48 +752,87 @@
                 align-items: center;
                 justify-content: space-between;
                 gap: 12px;
-                padding: 14px 20px;
-                padding-bottom: calc(14px + env(safe-area-inset-bottom));
-                background: rgba(255,255,255,0.96);
-                -webkit-backdrop-filter: blur(10px);
-                backdrop-filter: blur(10px);
-                border-top: 1px solid var(--ink);
+                padding: 12px 20px;
+                padding-bottom: calc(12px + env(safe-area-inset-bottom));
+                background: var(--navy);
+                color: #fff;
+                box-shadow: 0 -8px 24px rgba(18, 31, 40, 0.25);
             }
 
             .sticky-bar .sticky-label {
                 display: block;
-                font-size: 11px;
-                font-weight: 600;
-                text-transform: uppercase;
-                letter-spacing: 0.12em;
-                color: var(--muted);
+                font-size: 12px;
+                font-weight: 400;
+                color: rgba(255,255,255,0.7);
             }
 
             .sticky-bar .sticky-total {
                 display: block;
                 font-size: 24px;
                 font-weight: 500;
-                color: var(--ink);
+                color: #fff;
                 font-variant-numeric: tabular-nums;
                 white-space: nowrap;
             }
 
             .sticky-bar .btn {
                 width: auto;
-                padding: 14px 20px;
+                padding: 13px 22px;
             }
 
             .toast {
-                bottom: calc(104px + env(safe-area-inset-bottom));
+                bottom: calc(100px + env(safe-area-inset-bottom));
             }
         }
     </style>
 </head>
 <body>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <svg class="logo" role="img" aria-label="OMS Prüfservice" xmlns="http://www.w3.org/2000/svg" id="OMS" viewBox="0 0 279.77 134.46">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #243746;
+      }
+
+      .cls-2 {
+        fill: #13a2dd;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="cls-1" d="M27.06,125a9.17,9.17,0,0,1,2.54.34,6.25,6.25,0,0,1,2.11,1.06,5.29,5.29,0,0,1,1.44,1.82,5.84,5.84,0,0,1,.54,2.61,6,6,0,0,1-.54,2.63,5.54,5.54,0,0,1-1.44,1.86,6.15,6.15,0,0,1-2.11,1.1,8.81,8.81,0,0,1-2.54.35H22v6.74a.71.71,0,0,1-.22.53.73.73,0,0,1-.52.22H20.12a.74.74,0,0,1-.52-.22.71.71,0,0,1-.22-.53V125.78a.75.75,0,0,1,.74-.74ZM22,134.34h4.93a4.94,4.94,0,0,0,3.07-.85,3.13,3.13,0,0,0,1.08-2.62A3,3,0,0,0,30,128.31a5.14,5.14,0,0,0-3.07-.79H22Z" transform="translate(-15.53 -10.12)"></path>
+    <path class="cls-1" d="M53.91,125a9.5,9.5,0,0,1,2.54.33,6.18,6.18,0,0,1,2.11,1A5,5,0,0,1,60,128.15a5.68,5.68,0,0,1,.54,2.58,5.28,5.28,0,0,1-1.12,3.55,6,6,0,0,1-2.84,1.87l4.15,7.24a.61.61,0,0,1,.08.3.58.58,0,0,1-.18.43.58.58,0,0,1-.42.18H59a1.06,1.06,0,0,1-.81-.28,3,3,0,0,1-.37-.47l-4-7H49.12v7a.71.71,0,0,1-.22.53.74.74,0,0,1-.52.22H47.25a.73.73,0,0,1-.52-.22.71.71,0,0,1-.22-.53V125.78a.7.7,0,0,1,.22-.52.69.69,0,0,1,.52-.22Zm-4.79,9h4.65a5.22,5.22,0,0,0,3.07-.78,2.93,2.93,0,0,0,1.08-2.55,2.76,2.76,0,0,0-1.08-2.48,5.47,5.47,0,0,0-3.07-.73H49.12Z" transform="translate(-15.53 -10.12)"></path>
+    <path class="cls-1" d="M87.83,125a.69.69,0,0,1,.52.22.7.7,0,0,1,.22.52v11a11,11,0,0,1-.42,3.12,6.94,6.94,0,0,1-1.32,2.46,6,6,0,0,1-2.3,1.63,10.25,10.25,0,0,1-6.74,0,6,6,0,0,1-2.3-1.63,6.62,6.62,0,0,1-1.31-2.46,11.38,11.38,0,0,1-.41-3.12v-11a.75.75,0,0,1,.74-.74h1.13a.69.69,0,0,1,.52.22.7.7,0,0,1,.22.52v11.14a5.59,5.59,0,0,0,1.27,4,4.67,4.67,0,0,0,3.52,1.3,4.73,4.73,0,0,0,3.54-1.3,5.55,5.55,0,0,0,1.28-4V125.78a.7.7,0,0,1,.22-.52.69.69,0,0,1,.52-.22Zm-8-2.12a.75.75,0,0,1-.75.74H77.48a.7.7,0,0,1-.52-.22.73.73,0,0,1-.22-.52v-1.57a.74.74,0,0,1,.22-.52.7.7,0,0,1,.52-.22h1.57a.73.73,0,0,1,.53.22.74.74,0,0,1,.22.52Zm5.8,0a.69.69,0,0,1-.22.52.7.7,0,0,1-.52.22H83.29a.75.75,0,0,1-.74-.74v-1.57a.7.7,0,0,1,.22-.52.69.69,0,0,1,.52-.22h1.57a.75.75,0,0,1,.74.74Z" transform="translate(-15.53 -10.12)"></path>
+    <path class="cls-1" d="M114.32,125a.73.73,0,0,1,.53.22.74.74,0,0,1,.22.52v1a.75.75,0,0,1-.75.75h-9v6.35h8.5a.73.73,0,0,1,.53.22.74.74,0,0,1,.22.52v1a.75.75,0,0,1-.22.53.77.77,0,0,1-.53.22h-8.5v7.2a.71.71,0,0,1-.22.53.74.74,0,0,1-.52.22H103.4a.73.73,0,0,1-.52-.22.71.71,0,0,1-.22-.53V125.78a.7.7,0,0,1,.22-.52.69.69,0,0,1,.52-.22Z" transform="translate(-15.53 -10.12)"></path>
+    <path class="cls-1" d="M133.75,124.76a7.72,7.72,0,0,1,2.95.53,7.94,7.94,0,0,1,2.18,1.28,5.65,5.65,0,0,1,1.36,1.62,3.58,3.58,0,0,1,.49,1.55.47.47,0,0,1-.16.43.64.64,0,0,1-.44.18H139a1,1,0,0,1-.48-.11,1.2,1.2,0,0,1-.37-.5,5.76,5.76,0,0,0-.46-.7,3.93,3.93,0,0,0-.85-.82,5,5,0,0,0-1.31-.69,5.11,5.11,0,0,0-1.78-.29,5.94,5.94,0,0,0-1.48.18A4.26,4.26,0,0,0,131,128a2.77,2.77,0,0,0-.88.89,2.33,2.33,0,0,0-.33,1.25,2.2,2.2,0,0,0,.32,1.21,2.86,2.86,0,0,0,1,.9,9.2,9.2,0,0,0,1.77.73c.72.22,1.59.46,2.61.74a16.37,16.37,0,0,1,2.66.91A7.08,7.08,0,0,1,140,135.7a3.71,3.71,0,0,1,1,1.43,5,5,0,0,1,.31,1.83,4.81,4.81,0,0,1-.53,2.27,5.3,5.3,0,0,1-1.5,1.77,7.16,7.16,0,0,1-2.33,1.16,10.26,10.26,0,0,1-3,.41,9,9,0,0,1-2.94-.46,8.15,8.15,0,0,1-2.31-1.22,6.25,6.25,0,0,1-1.53-1.65,3.65,3.65,0,0,1-.59-1.78.61.61,0,0,1,.61-.61h1.12a1.07,1.07,0,0,1,.49.11,1,1,0,0,1,.37.5,4.15,4.15,0,0,0,.51.83,3.65,3.65,0,0,0,.92.86,5.53,5.53,0,0,0,1.4.67,6.27,6.27,0,0,0,1.95.28,7.65,7.65,0,0,0,1.83-.22,5.3,5.3,0,0,0,1.53-.64,3.33,3.33,0,0,0,1-1,2.3,2.3,0,0,0,.38-1.29,1.81,1.81,0,0,0-.44-1.22,4,4,0,0,0-1.27-.93,12.38,12.38,0,0,0-2-.75c-.8-.23-1.7-.47-2.71-.73a11.26,11.26,0,0,1-2.34-.87,5.69,5.69,0,0,1-1.56-1.17,3.79,3.79,0,0,1-.87-1.46,5.32,5.32,0,0,1-.26-1.73,5.05,5.05,0,0,1,.41-2,5,5,0,0,1,1.23-1.71,6.09,6.09,0,0,1,2-1.19A8.36,8.36,0,0,1,133.75,124.76Z" transform="translate(-15.53 -10.12)"></path>
+    <path class="cls-1" d="M166.21,141.82a.73.73,0,0,1,.52.22.7.7,0,0,1,.22.52v1a.71.71,0,0,1-.22.53.73.73,0,0,1-.52.22H155.1a.75.75,0,0,1-.75-.75V125.78a.74.74,0,0,1,.22-.52.71.71,0,0,1,.53-.22H166a.69.69,0,0,1,.52.22.7.7,0,0,1,.22.52v1a.75.75,0,0,1-.74.75h-9v5.8h8.41a.71.71,0,0,1,.53.22.74.74,0,0,1,.22.52v1a.75.75,0,0,1-.75.75H157v6Z" transform="translate(-15.53 -10.12)"></path>
+    <path class="cls-1" d="M187.56,125a9.45,9.45,0,0,1,2.54.33,6.18,6.18,0,0,1,2.11,1,5,5,0,0,1,1.44,1.76,5.68,5.68,0,0,1,.54,2.58,5.33,5.33,0,0,1-1.11,3.55,6,6,0,0,1-2.85,1.87l4.15,7.24a.61.61,0,0,1,.08.3.58.58,0,0,1-.18.43.56.56,0,0,1-.42.18h-1.18a1.07,1.07,0,0,1-.82-.28,3,3,0,0,1-.37-.47l-4-7h-4.73v7a.71.71,0,0,1-.22.53.74.74,0,0,1-.52.22H180.9a.73.73,0,0,1-.52-.22.71.71,0,0,1-.22-.53V125.78a.7.7,0,0,1,.22-.52.69.69,0,0,1,.52-.22Zm-4.79,9h4.65a5.22,5.22,0,0,0,3.07-.78,2.94,2.94,0,0,0,1.09-2.55,2.77,2.77,0,0,0-1.09-2.48,5.47,5.47,0,0,0-3.07-.73h-4.65Z" transform="translate(-15.53 -10.12)"></path>
+    <path class="cls-1" d="M218.81,125.73a1.64,1.64,0,0,1,.3-.46,1.07,1.07,0,0,1,.77-.23h1a.58.58,0,0,1,.43.18.58.58,0,0,1,.18.42.67.67,0,0,1-.06.28l-5.94,17.28a1.73,1.73,0,0,1-.54.8,1.39,1.39,0,0,1-.92.3H213a1.37,1.37,0,0,1-.91-.3,1.86,1.86,0,0,1-.52-.8l-6-17.28a.66.66,0,0,1-.05-.28.58.58,0,0,1,.18-.42.56.56,0,0,1,.42-.18h1a1.06,1.06,0,0,1,.77.23,1.29,1.29,0,0,1,.3.46l5.31,15.82Z" transform="translate(-15.53 -10.12)"></path>
+    <path class="cls-1" d="M235,144.3a.74.74,0,0,1-.52-.22.71.71,0,0,1-.22-.53V125.78A.75.75,0,0,1,235,125h1.13a.69.69,0,0,1,.52.22.7.7,0,0,1,.22.52v17.77a.71.71,0,0,1-.22.53.73.73,0,0,1-.52.22Z" transform="translate(-15.53 -10.12)"></path>
+    <path class="cls-1" d="M253.06,132.36c0,.82-.05,1.59-.05,2.31s0,1.48.05,2.31a5.58,5.58,0,0,0,1.39,3.7,4.88,4.88,0,0,0,3.76,1.42,6.6,6.6,0,0,0,2.23-.33,4.72,4.72,0,0,0,1.5-.86,3.57,3.57,0,0,0,.9-1.19,7.42,7.42,0,0,0,.49-1.36.62.62,0,0,1,.27-.46.78.78,0,0,1,.44-.15h1.27a.58.58,0,0,1,.42.18.58.58,0,0,1,.18.43,5.66,5.66,0,0,1-.47,2,6.26,6.26,0,0,1-1.36,2,7.34,7.34,0,0,1-2.36,1.58,8.81,8.81,0,0,1-3.51.63A8.6,8.6,0,0,1,255,144a7.11,7.11,0,0,1-2.41-1.56,6.74,6.74,0,0,1-1.55-2.35,8.69,8.69,0,0,1-.61-3c0-1.63,0-3.27,0-4.9a8.78,8.78,0,0,1,.61-3,6.73,6.73,0,0,1,1.55-2.37,7.24,7.24,0,0,1,2.41-1.55,8.4,8.4,0,0,1,3.19-.57,8.8,8.8,0,0,1,3.51.64,7.34,7.34,0,0,1,2.36,1.58,6.26,6.26,0,0,1,1.36,2,5.66,5.66,0,0,1,.47,2,.58.58,0,0,1-.18.43.58.58,0,0,1-.42.18H264a.78.78,0,0,1-.44-.15.64.64,0,0,1-.27-.46,7.16,7.16,0,0,0-.49-1.36,3.71,3.71,0,0,0-.9-1.2,4.91,4.91,0,0,0-1.5-.85,6.6,6.6,0,0,0-2.23-.33,4.85,4.85,0,0,0-3.76,1.42A5.58,5.58,0,0,0,253.06,132.36Z" transform="translate(-15.53 -10.12)"></path>
+    <path class="cls-1" d="M290.89,141.82a.73.73,0,0,1,.52.22.71.71,0,0,1,.23.52v1a.77.77,0,0,1-.75.75H279.78a.77.77,0,0,1-.53-.22.75.75,0,0,1-.22-.53V125.78a.74.74,0,0,1,.22-.52.73.73,0,0,1,.53-.22h10.89a.69.69,0,0,1,.52.22.7.7,0,0,1,.22.52v1a.75.75,0,0,1-.74.75h-9v5.8h8.42a.75.75,0,0,1,.74.74v1a.71.71,0,0,1-.22.53.74.74,0,0,1-.52.22h-8.42v6Z" transform="translate(-15.53 -10.12)"></path>
+  </g>
+  <g>
+    <path class="cls-1" d="M15.8,45.33A39,39,0,0,1,19,31.62,32.81,32.81,0,0,1,26.9,20.45a37.88,37.88,0,0,1,12.48-7.54,47.56,47.56,0,0,1,17-2.79,47.71,47.71,0,0,1,16.89,2.79,37.76,37.76,0,0,1,12.54,7.54,32.81,32.81,0,0,1,7.92,11.17,39.28,39.28,0,0,1,3.19,13.71c.17,3.73.26,7.62.26,11.69s-.09,7.89-.26,11.44a39.28,39.28,0,0,1-3.19,13.71,33.57,33.57,0,0,1-7.92,11.24A36.64,36.64,0,0,1,73.23,101a48.66,48.66,0,0,1-16.89,2.72,48.51,48.51,0,0,1-17-2.72A36.74,36.74,0,0,1,26.9,93.41,33.57,33.57,0,0,1,19,82.17,39,39,0,0,1,15.8,68.46q-.27-5.32-.27-11.44C15.53,53,15.62,49.06,15.8,45.33Zm57,22.48c.09-1.56.17-3.29.26-5.2s.13-3.85.13-5.85,0-3.91-.13-5.78-.17-3.53-.26-5a20.28,20.28,0,0,0-1.37-6,14,14,0,0,0-3.11-4.74,14.43,14.43,0,0,0-5-3.18,19.17,19.17,0,0,0-7-1.17,19.19,19.19,0,0,0-7,1.17,14.39,14.39,0,0,0-5,3.18A13.88,13.88,0,0,0,41.2,40a20.28,20.28,0,0,0-1.37,6c-.17,1.47-.28,3.14-.32,5s-.07,3.79-.07,5.78,0,4,.07,5.85.15,3.64.32,5.2A17.43,17.43,0,0,0,44.32,78.6q4,4.28,12,4.28t12-4.28A18.31,18.31,0,0,0,72.84,67.81Z" transform="translate(-15.53 -10.12)"></path>
+    <path class="cls-1" d="M254.5,10.12a46.57,46.57,0,0,1,15.27,2.4,44.27,44.27,0,0,1,12,6.17A31.27,31.27,0,0,1,289.71,27a17.47,17.47,0,0,1,3,8.7,2.76,2.76,0,0,1-.84,2,2.63,2.63,0,0,1-1.89.84H273a6.85,6.85,0,0,1-2.92-.52,9.28,9.28,0,0,1-2.28-1.56c-.26-.26-.67-.69-1.23-1.3a12.4,12.4,0,0,0-2.41-1.88,16.4,16.4,0,0,0-3.9-1.69,19.93,19.93,0,0,0-5.71-.71,34.39,34.39,0,0,0-4.74.32,17.54,17.54,0,0,0-4,1,7.32,7.32,0,0,0-2.86,2,4.84,4.84,0,0,0-1.11,3.25A4.5,4.5,0,0,0,243,40.78a11.25,11.25,0,0,0,4.16,2.41,56.57,56.57,0,0,0,7.73,2.14q4.8,1,11.95,2.47a66.92,66.92,0,0,1,12.48,3.64,29.53,29.53,0,0,1,8.9,5.52,20.94,20.94,0,0,1,5.33,7.8,29,29,0,0,1,1.75,10.59,23.31,23.31,0,0,1-3,11.82,27.25,27.25,0,0,1-8.38,8.9,40.85,40.85,0,0,1-12.73,5.66,62.92,62.92,0,0,1-16,1.94A52.68,52.68,0,0,1,239,101.34a43.69,43.69,0,0,1-12.54-6.18,31,31,0,0,1-8.26-8.64,19.19,19.19,0,0,1-3.11-9.74,2.78,2.78,0,0,1,.84-2,2.61,2.61,0,0,1,1.88-.84h17a7.41,7.41,0,0,1,2.86.45,8.24,8.24,0,0,1,2.07,1.37c.35.34.87.91,1.56,1.69a16.41,16.41,0,0,0,2.8,2.4A17.34,17.34,0,0,0,248.59,82a20.35,20.35,0,0,0,6.56.91,37.73,37.73,0,0,0,11.5-1.49c3.07-1,4.61-2.79,4.61-5.39a4,4,0,0,0-1.69-3.25,17.26,17.26,0,0,0-5.07-2.41,76.53,76.53,0,0,0-8.64-2.14q-5.27-1-12.41-2.6-13.38-2.85-19.55-9.55t-6.17-17.87a23.51,23.51,0,0,1,2.53-10.65,27.11,27.11,0,0,1,7.34-9,36.65,36.65,0,0,1,11.63-6.17A48,48,0,0,1,254.5,10.12Z" transform="translate(-15.53 -10.12)"></path>
+    <path class="cls-1" d="M201.48,12.45a3.38,3.38,0,0,0-2.47-1H183.94a5,5,0,0,0-3.9,1.42,16.37,16.37,0,0,0-1.69,2.08l-21,36-21.05-36a16.37,16.37,0,0,0-1.69-2.08,5,5,0,0,0-3.9-1.42H115.59a3.53,3.53,0,0,0-3.51,3.5v84a3.55,3.55,0,0,0,3.51,3.51h17a3.55,3.55,0,0,0,3.51-3.51v-43L148.34,77.3a12.22,12.22,0,0,0,1.75,2.14,4.09,4.09,0,0,0,3,1.1h8.32a4.09,4.09,0,0,0,3-1.1,12.79,12.79,0,0,0,1.76-2.14l12.21-21.44,22.9-39.16C202.59,14.64,202.14,13.11,201.48,12.45Z" transform="translate(-15.53 -10.12)"></path>
+    <path class="cls-2" d="M178.48,98.87a3.55,3.55,0,0,0,3.51,3.51h17a3.55,3.55,0,0,0,3.51-3.51s0-8.84,0-8.83V44L190.84,64.44,179.52,84.29a8.35,8.35,0,0,0-1.05,4.06Z" transform="translate(-15.53 -10.12)"></path>
+  </g>
+</svg>
+
+            <span class="topbar-tag">Spesenantrag für Mitarbeitende</span>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="hero-inner">
+            <p class="eyebrow">Frenus AG</p>
+            <h1>Spesenantrag</h1>
+            <p class="subtitle">Pauschalspesen und Verpflegungsmehraufwendungen, gültig ab 03/2025</p>
+        </div>
+    </section>
     <div class="container">
-        <p class="eyebrow">Frenus AG</p>
-        <h1>Spesenantrag</h1>
-        <p class="subtitle">Pauschalspesen und Verpflegungsmehraufwendungen, gültig ab 03/2025</p>
 
         <div class="info-box">
             Alle Daten bleiben lokal in deinem Browser. Nichts wird gespeichert oder gesendet.
@@ -723,7 +840,7 @@
         </div>
 
         <div style="display:flex;justify-content:flex-end;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:24px;">
-            <label id="templateSection" style="position:relative;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;color:#6b6b6b;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.2s;border:1px solid #e5e5e5;overflow:hidden;" onmouseover="this.style.borderColor='#1a1a1a';this.style.color='#1a1a1a'" onmouseout="this.style.borderColor='#e5e5e5';this.style.color='#6b6b6b'">
+            <label id="templateSection" style="position:relative;display:inline-flex;align-items:center;gap:8px;padding:10px 18px;color:#314351;font-size:14px;font-weight:500;cursor:pointer;transition:all 0.2s;border:1px solid #d5dbe1;border-radius:999px;overflow:hidden;" onmouseover="this.style.borderColor='#00a3e0';this.style.color='#008bc0'" onmouseout="this.style.borderColor='#d5dbe1';this.style.color='#314351'">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
                 <span id="uploadLabel">Bestehende Datei laden</span>
                 <input type="file" id="templateFile" accept=".xlsx" onchange="loadTemplate(this)" style="position:absolute;left:0;top:0;opacity:0;cursor:pointer;width:100%;height:100%;">
@@ -790,11 +907,11 @@
                         <tr>
                             <th>Tag</th>
                             <th class="kst-head">Projekt / Kostenstelle</th>
-                            <th title="Pauschale An-/Abreisetag">An-/Abreise</th>
-                            <th title="Pauschale CHF 60 bei 24h Abwesenheit">24h abwesend</th>
-                            <th title="Kürzung CHF 10 wenn Frühstück gestellt">Frühstück</th>
-                            <th title="Kürzung CHF 20 wenn Mittagessen gestellt">Mittag</th>
-                            <th title="Kürzung CHF 30 wenn Abendessen gestellt">Abend</th>
+                            <th title="Pauschale An-/Abreisetag">An-/Abreise<small>Pauschale</small></th>
+                            <th title="Pauschale CHF 60 bei 24h Abwesenheit">24h abwesend<small>Pauschale 60</small></th>
+                            <th title="Kürzung CHF 10 wenn das Frühstück gestellt oder im Hotel inbegriffen war">Frühstück<small>gestellt, -10</small></th>
+                            <th title="Kürzung CHF 20 wenn das Mittagessen gestellt war">Mittagessen<small>gestellt, -20</small></th>
+                            <th title="Kürzung CHF 30 wenn das Abendessen gestellt war">Abendessen<small>gestellt, -30</small></th>
                             <th>Spesen CHF</th>
                             <th></th>
                         </tr>
@@ -814,27 +931,27 @@
 
             <div class="legend">
                 <div class="legend-item">
-                    <span class="legend-dot" style="background:#1a1a1a"></span>
+                    <span class="legend-dot" style="background:#00a3e0"></span>
                     <span><strong>24h abwesend = CHF 60</strong> Tagespauschale</span>
                 </div>
                 <div class="legend-item">
-                    <span class="legend-dot" style="background:#1a1a1a"></span>
+                    <span class="legend-dot" style="background:#00a3e0"></span>
                     <span><strong>An-/Abreisetag = CHF 60</strong> Pauschale, entfällt sobald die Kürzungen CHF 30 übersteigen</span>
                 </div>
                 <div class="legend-item">
-                    <span class="legend-dot" style="background:#c8553d"></span>
+                    <span class="legend-dot" style="background:#e07b00"></span>
                     <span><strong>Frühstück gestellt = Kürzung CHF 10</strong></span>
                 </div>
                 <div class="legend-item">
-                    <span class="legend-dot" style="background:#c8553d"></span>
+                    <span class="legend-dot" style="background:#e07b00"></span>
                     <span><strong>Mittagessen gestellt = Kürzung CHF 20</strong></span>
                 </div>
                 <div class="legend-item">
-                    <span class="legend-dot" style="background:#c8553d"></span>
+                    <span class="legend-dot" style="background:#e07b00"></span>
                     <span><strong>Abendessen gestellt = Kürzung CHF 30</strong></span>
                 </div>
                 <div class="legend-item">
-                    <span class="legend-dot" style="background:#6b6b6b"></span>
+                    <span class="legend-dot" style="background:#9aa5b1"></span>
                     <span>An-/Abreise und 24h schliessen sich pro Tag aus. Weniger als CHF 0 gibt es nicht.</span>
                 </div>
                 <div class="legend-note">
@@ -992,7 +1109,7 @@
 
                 loadDataFromExcel(sheet);
 
-                statusEl.innerHTML = '✓ ' + escapeHtml(file.name) + ' <button type="button" onclick="resetToEmbedded()" style="margin-left:8px;background:none;color:#c8553d;border:1px solid #c8553d;padding:2px 8px;cursor:pointer;font-family:inherit">X</button>';
+                statusEl.innerHTML = '✓ ' + escapeHtml(file.name) + ' <button type="button" onclick="resetToEmbedded()" style="margin-left:8px;background:none;color:#e07b00;border:1px solid #e07b00;border-radius:999px;padding:2px 9px;cursor:pointer;font-family:inherit">X</button>';
                 statusEl.className = 'template-status success';
                 sectionEl.classList.add('loaded');
                 sectionEl.style.pointerEvents = 'none';
@@ -1113,9 +1230,9 @@
                 <td class="kst-col"><input type="text" class="projekt-input" placeholder="Projekt / Kostenstelle" value="${escapeHtml(d.projektKst || '')}"></td>
                 <td class="cb-col">${checkboxHtml('anreise-cb', 'An-/Abreise', d.anreise, id)}</td>
                 <td class="cb-col">${checkboxHtml('ganztag-cb', '24h abwesend', d.ganztag, id)}</td>
-                <td class="cb-col">${checkboxHtml('fruehstueck-cb', 'Frühstück', d.fruehstueck, id)}</td>
-                <td class="cb-col">${checkboxHtml('mittag-cb', 'Mittagessen', d.mittag, id)}</td>
-                <td class="cb-col">${checkboxHtml('abend-cb', 'Abendessen', d.abend, id)}</td>
+                <td class="cb-col">${checkboxHtml('fruehstueck-cb', 'Frühstück gestellt', d.fruehstueck, id)}</td>
+                <td class="cb-col">${checkboxHtml('mittag-cb', 'Mittagessen gestellt', d.mittag, id)}</td>
+                <td class="cb-col">${checkboxHtml('abend-cb', 'Abendessen gestellt', d.abend, id)}</td>
                 <td class="spesen-col"><span id="spesen-${id}">0.00</span></td>
                 <td class="del-col"><button type="button" class="delete-btn" onclick="deleteRow(${id})" aria-label="Tag entfernen">X</button></td>
             `;
