@@ -737,6 +737,12 @@
                 background: var(--navy);
                 color: #fff;
                 box-shadow: 0 -8px 24px rgba(18, 31, 40, 0.25);
+                transform: translateY(110%);
+                transition: transform 0.28s ease;
+            }
+
+            .sticky-bar.visible {
+                transform: translateY(0);
             }
 
             .sticky-bar .sticky-label {
@@ -981,6 +987,21 @@
             addRow();
             loadEmbeddedTemplate();
         });
+
+        // Total-Leiste: erscheint beim Runterscrollen, verschwindet beim Hochscrollen
+        (function() {
+            let lastY = window.scrollY;
+            const bar = document.querySelector('.sticky-bar');
+            window.addEventListener('scroll', function() {
+                const y = window.scrollY;
+                if (y < 80 || y < lastY - 4) {
+                    bar.classList.remove('visible');
+                } else if (y > lastY + 4) {
+                    bar.classList.add('visible');
+                }
+                lastY = y;
+            }, { passive: true });
+        })();
 
         function setGenerateEnabled(enabled) {
             document.getElementById('generateBtn').disabled = !enabled;
